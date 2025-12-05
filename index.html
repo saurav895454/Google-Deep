@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Google Search - BY- Saurav Chauhan </title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/adce626/adce/main/adce626.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-bug"></i>
+                    <h1>Deep Google Search</h1>
+                    <span class="subtitle">BY- Saurav Chauhan </span>
+                </div>
+                <div class="header-controls">
+                    <button class="btn-icon" id="themeToggle" title="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn-icon" id="workspaceToggle" title="Toggle Workspace">
+                        <i class="fas fa-briefcase"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Target Input Section -->
+            <section class="target-section">
+                <div class="input-group">
+                    <label for="domainInput">
+                        <i class="fas fa-crosshairs"></i>
+                        Target Domain(s)
+                    </label>
+                    <input type="text" id="domainInput" placeholder="example.com, target.com, *.example.com" class="input-field">
+                    <div class="input-help">
+                        Enter single or multiple domains (comma-separated). Use wildcards (*) for subdomains.
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="quick-actions">
+                <div class="action-grid">
+                    <button class="action-btn" data-category="all">
+                        <i class="fas fa-search"></i>
+                        <span>All Dorks</span>
+                        <small>Complete Collection</small>
+                    </button>
+                    <button class="action-btn" data-category="sensitive">
+                        <i class="fas fa-file-lock"></i>
+                        <span>Sensitive Files</span>
+                        <small>Leaked Data & Configs</small>
+                    </button>
+                    <button class="action-btn" data-category="vulnerabilities">
+                        <i class="fas fa-shield-virus"></i>
+                        <span>Vulnerabilities</span>
+                        <small>Injection Points</small>
+                    </button>
+                    <button class="action-btn" data-category="admin">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Admin Panels</span>
+                        <small>Login & Control</small>
+                    </button>
+                    <button class="action-btn" data-category="cloud">
+                        <i class="fas fa-cloud"></i>
+                        <span>Cloud Storage</span>
+                        <small>AWS, Azure, GCP</small>
+                    </button>
+                    <button class="action-btn" data-category="endpoints">
+                        <i class="fas fa-plug"></i>
+                        <span>API Endpoints</span>
+                        <small>REST & GraphQL</small>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Filter Section -->
+            <section class="filter-section">
+                <div class="filter-controls">
+                    <div class="input-group">
+                        <input type="text" id="filterInput" placeholder="Filter dorks by keyword..." class="input-field">
+                        <button class="btn-icon" id="clearFilter" title="Clear Filter">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="filter-stats">
+                        <span id="resultCount">0 dorks available</span>
+                        <div class="stats-summary">
+                            <span class="stat-item">
+                                <i class="fas fa-database"></i>
+                                <span id="totalDorks">0</span> Total Dorks
+                            </span>
+                            <span class="stat-item">
+                                <i class="fas fa-layer-group"></i>
+                                <span id="totalCategories">0</span> Categories
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Category Tabs -->
+            <section class="category-tabs">
+                <div class="tab-list">
+                    <button class="tab-btn active" data-tab="all">All Categories</button>
+                    <button class="tab-btn" data-tab="sensitive">Sensitive Data</button>
+                    <button class="tab-btn" data-tab="vulnerabilities">Vulnerabilities</button>
+                    <button class="tab-btn" data-tab="endpoints">API Endpoints</button>
+                    <button class="tab-btn" data-tab="errors">Server Errors</button>
+                    <button class="tab-btn" data-tab="admin">Admin Access</button>
+                    <button class="tab-btn" data-tab="cloud">Cloud Storage</button>
+                    <button class="tab-btn" data-tab="code">Code Leaks</button>
+                    <button class="tab-btn" data-tab="infrastructure">Infrastructure</button>
+                    <button class="tab-btn" data-tab="social">Social Media</button>
+                    <button class="tab-btn" data-tab="security">Security Research</button>
+                    <button class="tab-btn" data-tab="advanced">Advanced Search</button>
+                    <button class="tab-btn" data-tab="mobile">Mobile & IoT</button>
+                    <button class="tab-btn" data-tab="crypto">Cryptocurrency</button>
+                </div>
+            </section>
+
+            <!-- Dorks Container -->
+            <section class="dorks-container">
+                <div id="loading" class="loading-state">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading Google Dorks...</p>
+                </div>
+                <div id="dorksList" class="dorks-list"></div>
+                <div id="emptyState" class="empty-state" style="display: none;">
+                    <i class="fas fa-search"></i>
+                    <h3>No dorks found</h3>
+                    <p>Try adjusting your filter or select a different category.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Workspace Sidebar -->
+    <aside class="workspace" id="workspace">
+        <div class="workspace-header">
+            <h3>
+                <i class="fas fa-briefcase"></i>
+                Workspace
+            </h3>
+            <button class="btn-icon" id="closeWorkspace">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="workspace-content">
+            <div class="workspace-section">
+                <h4>Saved Targets</h4>
+                <div id="savedTargets" class="saved-list"></div>
+                <button class="btn-secondary" id="saveCurrentTarget">
+                    <i class="fas fa-save"></i>
+                    Save Current Target
+                </button>
+            </div>
+            <div class="workspace-section">
+                <h4>Notes</h4>
+                <textarea id="workspaceNotes" placeholder="Add your reconnaissance notes here..." class="workspace-textarea"></textarea>
+                <button class="btn-secondary" id="saveNotes">
+                    <i class="fas fa-save"></i>
+                    Save Notes
+                </button>
+            </div>
+            <div class="workspace-section">
+                <h4>Export Data</h4>
+                <button class="btn-secondary" id="exportWorkspace">
+                    <i class="fas fa-download"></i>
+                    Export Workspace
+                </button>
+                <input type="file" id="importWorkspace" accept=".json" style="display: none;">
+                <button class="btn-secondary" id="importButton">
+                    <i class="fas fa-upload"></i>
+                    Import Workspace
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <!-- Keyboard Shortcuts Modal -->
+    <div id="shortcutsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Keyboard Shortcuts</h3>
+                <button class="btn-icon" id="closeShortcuts">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="shortcuts-grid">
+                    <div class="shortcut">
+                        <kbd>Ctrl</kbd> + <kbd>/</kbd>
+                        <span>Focus search filter</span>
+                    </div>
+                    <div class="shortcut">
+                        <kbd>Ctrl</kbd> + <kbd>W</kbd>
+                        <span>Toggle workspace</span>
+                    </div>
+                    <div class="shortcut">
+                        <kbd>Ctrl</kbd> + <kbd>T</kbd>
+                        <span>Toggle theme</span>
+                    </div>
+                    <div class="shortcut">
+                        <kbd>Esc</kbd>
+                        <span>Close modals</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="scripts/dorks.js"></script>
+    <script src="scripts/workspace.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
