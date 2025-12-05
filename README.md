@@ -1,7 +1,7 @@
 
 # **Deep Google Search**
 
-Direct Access Link - 
+Direct Access Link - https://saurav895454.github.io/Google-Deep/
 
 A lightweight and fast **Google Dorking & Recon tool** made for bug bounty hunters and OSINT users.
 It automatically applies your target domain to hundreds of categorized Google dorks and provides a clean interface to search, filter, save targets, and manage notes.
